@@ -40,6 +40,7 @@ export function OrderTableFilters() {
     })
 
   function handleFilter({ customerName, orderId, status }: OrderFiltersSchema) {
+    console.log(customerName, orderId, status)
     setSearchParams((state) => {
       if (orderId) {
         state.set('orderId', orderId)
@@ -49,7 +50,7 @@ export function OrderTableFilters() {
       if (customerName) {
         state.set('customerName', customerName)
       } else {
-        state.delete('orderId')
+        state.delete('customerName')
       }
       if (status) {
         state.set('status', status)
@@ -88,12 +89,12 @@ export function OrderTableFilters() {
       <span className="text-sm font-semibold">Filtros:</span>
       <Input
         placeholder="ID do pedido"
-        className="h-8 w-auto"
+        className="h-10 w-auto"
         {...register('orderId')}
       />
       <Input
         placeholder="Nome do cliente"
-        className="h-8 w-[320px]"
+        className="h-10 w-[320px]"
         {...register('customerName')}
       />
       <Controller
@@ -108,7 +109,7 @@ export function OrderTableFilters() {
               value={value}
               disabled={disabled}
             >
-              <SelectTrigger className="h-8 w-[180px]">
+              <SelectTrigger className="h-10 w-[180px]">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -123,7 +124,7 @@ export function OrderTableFilters() {
           )
         }}
       />
-      <Button type="submit" variant="secondary" size="xs">
+      <Button type="submit" variant="secondary" size="sm">
         <Search className="mr-2 h-2 w-4" />
         Filtrar resultados
       </Button>
@@ -131,7 +132,7 @@ export function OrderTableFilters() {
         onClick={handleClearFilters}
         type="button"
         variant="outline"
-        size="xs"
+        size="sm"
       >
         <X className="mr-2 h-2 w-4" />
         Remover filtros
